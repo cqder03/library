@@ -3,11 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>My Library</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <main class="main">
+        <div class="content-wrapper">
+            <h1 class="heading">My book library</h1>
+            <p class="description">
+                In the fields below you can enter information about your book and by pressing
+                the button you can add it to the list.
+            </p>
+            <form action="">
+                <div class="form-inputs">
+                    <div class="book-wrapper">
+                        <label for="book-input">Book</label>
+                        <input type="text" id="book-input" name="book-name">
+                    </div>
+                    <div class="author-wrapper">
+                        <label for="author-input">Author</label>
+                        <input type="text" id="author-input" name="author-name">
+                    </div>
+                    <div class="pages-wrapper">
+                        <label for="pages-input">Pages</label>
+                        <input type="number" id='pages-input' name="pages" min="1" max="1600">
+                    </div>
+                    <div class="status-wrapper">
+                        <label for="status-input">Status</label>
+                        <select name="status" id="status-input">
+                            <option value="read">Read</option>
+                            <option value="not-read">Not read</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button">SUBMIT</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Pages</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>The Hobbit</td>
+                    <td>J.R.R Tolkien</td>
+                    <td>295</td>
+                    <td><button class="read-button not-read">NOT READ</button></td>
+                    <td class="delete"><button class="delete-button">DELETE</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 </html>

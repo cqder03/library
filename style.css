@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'popins-regular';
+    src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --background-color: #181a1b;
+    --border-color: #3d4245;
+    --accent-color: #082f49;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+body {
+    font-family: 'popins-regular';
+    background-color: var(--background-color);
+}
+
+.content-wrapper {
+    width: 55vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding-top: 6rem;
+}
+
+.heading {
+    font-weight: normal;
+    font-size: 3rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    padding: 3rem 0;
+}
+
+/* Form style start */
+
+form {
+    margin-bottom: 3rem;
+}
+
+.form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.book-wrapper,
+.author-wrapper,
+.pages-wrapper,
+.status-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-wrapper {
+    flex-grow: 4;
+}
+
+.author-wrapper {
+    flex-grow: 4;
+}
+
+.pages-wrapper,
+.status-wrapper {
+    flex-grow: 1;
+}
+
+label {
+    font-size: 1.2rem;
+    padding-bottom: 0.3rem;
+}
+
+input, select {
+    height: 2rem;
+    font-size: 1rem;
+    text-indent: 0.3rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.3rem;
+}
+
+button {
+    background-color: var(--accent-color);
+    border: 1px solid transparent;
+    border-radius: 0.3rem;
+    padding: 0.6rem 2rem;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Form style end */
+
+/* Table style start */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.delete {
+    width: 6rem;
+}
+
+.delete-button {
+    background-color: #881337;
+}
+
+.read {
+    background-color: #0284c7;
+}
+
+.not-read {
+    background-color: #b91c1c;
+}
+
+/* Table style end */
