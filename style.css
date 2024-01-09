@@ -126,6 +126,21 @@ th, td {
     background-color: #881337;
 }
 
+.trash-button {
+    background-color: #881337;
+    height: 2.25rem;
+    width: 2.25rem;
+    position: relative;
+    top: 12px;
+}
+
+.trash-button > img {
+    height: 24px;
+    position: relative;
+    top: -3px;
+    left: -0.8rem;
+}
+
 .read {
     background-color: #0284c7;
 }

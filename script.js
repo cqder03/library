@@ -1,10 +1,12 @@
 const library = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;  
+    }
 }
 
 function addBooks(...books) {
@@ -90,11 +92,27 @@ function transferBookData() {
             character words and book can\'t have less than 5 pages.');
             return;
         }
+
+    let pagesFieldVal = pagesField.value.slice(0, 1);
+    if (pagesFieldVal == 0) {
+        alert('Amount of pages can\'t start with 0');
+        return;
+    }
     
     const newBook = new Book(bookField.value, authorField.value, pagesField.value, statusField.value);
     addBooks(newBook);
     displayBook(newBook);
 }
+
+function defaultValues() {
+    document.querySelector('#book-input').value = '';
+    document.querySelector('#author-input').value = '';
+    document.querySelector('#pages-input').value = 0;
+    document.querySelector('#status-input').value = 'not read';
+}
+
+const trashBtn = document.querySelector('.trash-button');
+trashBtn.addEventListener('click', defaultValues);
 
 const button = document.querySelector('.submit-button');
 button.addEventListener('click', transferBookData);

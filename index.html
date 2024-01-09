@@ -28,17 +28,18 @@
                     </div>
                     <div class="pages-wrapper">
                         <label for="pages-input">Pages</label>
-                        <input type="number" id='pages-input' name="pages" min="1" max="1600">
+                        <input type="number" id='pages-input' name="pages" min="1" max="1600" value="0">
                     </div>
                     <div class="status-wrapper">
                         <label for="status-input">Status</label>
                         <select name="status" id="status-input">
                             <option value="read">Read</option>
-                            <option value="not read">Not read</option>
+                            <option value="not read" selected>Not read</option>
                         </select>
                     </div>
                 </div>
                 <button type="button" class="submit-button">SUBMIT</button>
+                <button type="button" class="trash-button"><img src="assets/icons/trash-bin-icon.svg" alt="trash bin"></button>
             </form>
             <table>
                 <thead>
