@@ -16,19 +16,22 @@
                 In the fields below you can enter information about your book and by pressing
                 the button you can add it to the list.
             </p>
-            <form action="">
+            <form action="" novalidate>
                 <div class="form-inputs">
                     <div class="book-wrapper">
                         <label for="book-input">Book</label>
-                        <input type="text" id="book-input" name="book-name">
+                        <input type="text" id="book-input" name="book-name" minlength="5" required>
+                        <div class="book-name-error"></div>
                     </div>
                     <div class="author-wrapper">
                         <label for="author-input">Author</label>
-                        <input type="text" id="author-input" name="author-name">
+                        <input type="text" id="author-input" name="author-name" minlength="5" required>
+                        <div class="author-name-error"></div>
                     </div>
                     <div class="pages-wrapper">
                         <label for="pages-input">Pages</label>
-                        <input type="number" id='pages-input' name="pages" min="1" max="1600" value="0">
+                        <input type="number" id='pages-input' name="pages" min="49" value="0" required>
+                        <div class="pages-count-error"></div>
                     </div>
                     <div class="status-wrapper">
                         <label for="status-input">Status</label>

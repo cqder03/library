@@ -86,22 +86,71 @@ function transferBookData() {
     const authorField = document.querySelector('#author-input');
     const pagesField = document.querySelector('#pages-input');
     const statusField = document.querySelector('#status-input');
-    if (bookField.value.length < 1 || authorField.value.length < 1 ||
-        Number(pagesField.value) < 5) {
-            alert('You have to fill out book and author fields with at least 5\
-            character words and book can\'t have less than 5 pages.');
-            return;
-        }
-
     let pagesFieldVal = pagesField.value.slice(0, 1);
-    if (pagesFieldVal == 0) {
-        alert('Amount of pages can\'t start with 0');
-        return;
-    }
+
     
     const newBook = new Book(bookField.value, authorField.value, pagesField.value, statusField.value);
     addBooks(newBook);
     displayBook(newBook);
+}
+
+function showError(field) {
+   if (field === 'book-name') {
+        const bookInput = document.querySelector('#book-input');
+        const bookError = document.querySelector('.book-name-error');
+        if (bookInput.validity.typeMissmatch) {
+            bookError.classList.add('show');
+            bookError.textContent = 'Name of the book can\'t  be a number';
+        } else if (bookInput.validity.tooShort) {
+            bookError.classList.add('show');
+            bookError.textContent = 'Name of the book have to be at least 5 characters long';
+        } else if (bookInput.validity.valueMissing) {
+            bookError.classList.add('show');
+            bookError.textContent = 'You need to enter name of the book';
+        }
+   } else if (field === 'author-name') {
+        const authorInput = document.querySelector('#author-input');
+        const authorError = document.querySelector('.author-name-error');
+        if (authorInput.validity.typeMissmatch) {
+            authorError.classList.add('show');
+            authorError.textContent = 'Name of the author can\'t  be a number';
+        } else if (authorInput.validity.tooShort) {
+            authorError.classList.add('show');
+            authorError.textContent = 'Name of the author have to be at least 5 character long';
+        } else if (authorInput.validity.valueMissing) {
+            authorError.classList.add('show');
+            authorError.textContent = 'You need to enter name of the author';
+        }
+    } else if (field === 'page-count') {
+        const pagesInput = document.querySelector('#pages-input');
+        const pagesError = document.querySelector('.pages-count-error');
+        if (pagesInput.validity.typeMissmatch) {
+            pagesError.classList.add('show');
+            pagesError.textContent = 'You need to enter number of pages here';
+        } else if (pagesInput.validity.rangeUnderflow) {
+            pagesError.classList.add('show');
+            pagesError.textContent = 'Book has to have more than 49 pages to be considered one';
+        } else if (pagesInput.validity.valueMissing) {
+            pagesError.classList.add('show');
+            pagesError.textContent = 'You need to enter the number of pages';
+        }
+    }
+}
+
+function deleteError(field) {
+    if (field === 'book-name') {
+        const bookError = document.querySelector('.book-name-error');
+        bookError.classList.remove('show');
+        bookError.textContent = '';
+    } else if (field === 'author-name') {
+        const authorError = document.querySelector('.author-name-error');
+        authorError.classList.remove('show');
+        authorError.textContent = '';
+    } else if (field === 'page-count') {
+        const pagesError = document.querySelector('.pages-count-error');
+        pagesError.classList.remove('show');
+        pagesError.textContent = '';
+    }
 }
 
 function defaultValues() {
@@ -111,11 +160,6 @@ function defaultValues() {
     document.querySelector('#status-input').value = 'not read';
 }
 
-const trashBtn = document.querySelector('.trash-button');
-trashBtn.addEventListener('click', defaultValues);
-
-const button = document.querySelector('.submit-button');
-button.addEventListener('click', transferBookData);
 
 function findBooksIndex(book) {
     let arrMaxIndex = library.length - 1;
@@ -125,21 +169,71 @@ function findBooksIndex(book) {
                 if (book.pages === library[i].pages) {
                     if (book.read === library[i].read) {
                         return i;
-                    } else {
-                        console.log('Readings don\'t match');
                     }
-                } else {
-                    console.log('Pages don\'t match');
                 }
-            } else {
-                console.log('Author\'s don\'t match');
             }
-        } else {
-            console.log('Names don\'t match.');
         }
     }
     return 'Error';
 }
+
+document.querySelector('#book-input').addEventListener('input', () => {
+        console.log('Inputing book name info');
+        const bookInput = document.querySelector('#book-input');
+        if (bookInput.validity.typeMissmatch ||
+            bookInput.validity.tooShort ||
+            bookInput.validity.valueMissing) {
+            showError('book-name');
+        } else if (bookInput.validity.valid) {
+            deleteError('book-name');
+        }
+});
+
+document.querySelector('#author-input').addEventListener('input', () => {
+    console.log('Inputing author name info');
+    const authorInput = document.querySelector('#author-input');
+        if (authorInput.validity.typeMissmatch ||
+            authorInput.validity.tooShort ||
+            authorInput.validity.valueMissing) {
+            showError('author-name')
+        } else if (authorInput.validity.valid) {
+            deleteError('author-name');
+        }
+});
+document.querySelector('#pages-input').addEventListener('input', () => {
+    console.log('Inputing page count info');
+    const pagesInput = document.querySelector('#pages-input');
+        if (pagesInput.validity.typeMissmatch ||
+            pagesInput.validity.rangeUnderflow ||
+            pagesInput.validity.valueMissing) {
+            showError('page-count');
+        } else if (pagesInput.validity.valid) {
+            deleteError('page-count');
+        }
+});
+
+const button = document.querySelector('.submit-button');
+button.addEventListener('click', () => {
+    const bookInput = document.querySelector('#book-input');
+    const authorInput = document.querySelector('#author-input');
+    const pagesInput = document.querySelector('#pages-input');
+
+    if (!bookInput.validity.valid) {
+        showError('book-name');
+        return;
+    } else if (!authorInput.validity.valid) {
+        showError('author-name');
+        return;
+    } else if (!pagesInput.validity.valid) {
+        showError('page-count');
+        return;
+    }
+    
+    transferBookData();
+});
+
+const trashBtn = document.querySelector('.trash-button');
+trashBtn.addEventListener('click', defaultValues);
 
 /* Default books */
 const book1 = new Book('The Hobbit','J.R.R  Tolkien', 295,'read');

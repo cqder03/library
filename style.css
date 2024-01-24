@@ -61,17 +61,16 @@ form {
     flex-direction: column;
 }
 
+.author-wrapper,
 .book-wrapper {
     flex-grow: 4;
-}
-
-.author-wrapper {
-    flex-grow: 4;
+    max-width: 20rem;
 }
 
 .pages-wrapper,
 .status-wrapper {
     flex-grow: 1;
+    max-width: 10rem;
 }
 
 label {
@@ -98,6 +97,22 @@ button {
 button:active {
     transform: scale(0.95);
 }
+
+.book-name-error,
+.author-name-error,
+.pages-count-error {
+    display: none;
+    background-color: #881337;
+    max-width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0.2rem 0 0.2rem 0.2rem;
+}
+
+.show {
+   display: block;
+}
+
 
 /* Form style end */
 
@@ -148,5 +163,4 @@ th, td {
 .not-read {
     background-color: #b91c1c;
 }
-
 /* Table style end */
